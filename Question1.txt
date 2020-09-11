@@ -1,0 +1,80 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+
+namespace VertaforeQuestion1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] values = new int[6];
+            int x;
+            string inputString;
+            
+            //Array Data
+            for (x = 0; x < values.Length; ++x)
+            {
+                Console.Write("Enter Integer Values Only {0} :", x + 1);
+                inputString = Console.ReadLine();
+
+                bool checker = inputString.All(char.IsDigit);
+
+                if (checker == true)
+                {
+                    values[x] = Convert.ToInt32(inputString);
+                }
+                else
+                {
+                    Console.Write("Value entered is not an Integer \n");
+                }
+            }
+            
+            //Entered Order
+            Console.WriteLine("\n------------------------------------");
+            Console.WriteLine("Values in Original order:");
+            for (x = 0; x < values.Length; ++x)
+                Console.Write("{0, 6}", values[x]);
+
+            //Ascending Order
+            Console.WriteLine("\n------------------------------------");
+            Array.Sort(values);
+            Console.WriteLine("Values in Ascending order:");
+            for (x = 0; x < values.Length; ++x)
+                Console.Write("{0, 6}", values[x]);
+
+            //Descending Order
+            Console.WriteLine("\n------------------------------------");
+            Array.Reverse(values);
+            Console.WriteLine("Values in Descending order:");
+            for (x = 0; x < values.Length; ++x)
+                Console.Write("{0, 6}", values[x]);
+
+            //Shuffled Order
+            Console.WriteLine("\n------------------------------------");
+            Console.WriteLine("Values in Shuffled order:");
+
+            //Random Function
+            Random random = new Random();
+            for (int i = values.Length - 1; i > 0; i--)
+            {
+                int randomIndex = random.Next(0, i + 1);
+
+                int temp = values[i];
+                values[i] = values[randomIndex];
+                values[randomIndex] = temp;
+            }
+            for (x = 0; x < values.Length; ++x)
+                Console.Write("{0, 6}", values[x]);
+            Console.WriteLine("\n------------------------------------");
+
+            //Stop to Analize Output
+                Console.WriteLine("Press any key to end.");
+            Console.ReadLine();
+        }   
+    }
+}

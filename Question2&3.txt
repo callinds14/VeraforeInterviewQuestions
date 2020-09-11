@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace VertaforeQuestions2and3
+{
+    class Program
+    {
+        
+        static void Main(string[] args)
+        {
+            //Vars
+            string word, begin, end, result;
+            int middle;
+            int i = 1;
+
+            //Unique Array
+            string[] outputArr = new string[i];
+             
+
+            //Input Word
+            Console.Write("Enter Word for Process (Non-Alpha to stop): ");
+            word = Console.ReadLine();
+            bool checker = word.All(char.IsLetter);
+
+            while (checker == true)
+            {
+                //Gathering First & Last Letters
+                //Count of Middle Chars
+                begin = word.Substring(0, 1);
+                end = word.Substring(word.Length - 1, 1);
+                middle = (word.Length - 2);
+                result = begin + middle + end;
+                            
+                //Check if Unique
+                if (outputArr.Contains(result))
+                {
+                    Console.Write("{0} -> {1} -> {2} \n", word, result, false);
+                }
+                else
+                {
+                    Console.Write("{0} -> {1} -> {2} \n", word, result, true);
+                }
+
+                //Array for Outputs (Result)
+                string y = result;
+                outputArr[i - 1] = y;
+                i++;
+                Array.Resize(ref outputArr, i);
+
+                //Next Word
+                Console.Write("Enter Word for Process (Number to stop): ");
+                word = Console.ReadLine();
+                checker = word.All(char.IsLetter);
+            }
+
+            //If Number or Special Char is Entered
+            if (checker == false)
+            {
+                Console.Write("End of Process.");
+                Console.ReadLine();
+            }
+        }
+    }
+}
